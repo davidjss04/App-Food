@@ -18,11 +18,21 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+// const controllerDB = require('./src/controllers/controllerDB.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+
+//colocar force: true para que se borre la base de datos y se cree de nuevo
+// conn.sync({ force: true }).then(() => {
+// 	server.listen(3001, async () => {
+// 		console.log('%s listening at 3001');
+// 		await controllerDB.getAll(); // eslint-disable-line no-console
+// 	});
+// });
+
+conn.sync().then(() => {
+	server.listen(3001, () => {
+		console.log('%s listening at 3001'); // eslint-disable-line no-console
+	});
 });

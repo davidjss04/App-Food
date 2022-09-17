@@ -25,7 +25,9 @@ server.use((req, res, next) => {
 	next();
 });
 
-server.use('/', routes);
+server.use('/', routes); //Apenas entre a barra algo entre a Routers
+
+//LLamar al next, para manejar errores
 
 // Error catching endware.
 server.use((err, req, res, next) => {
