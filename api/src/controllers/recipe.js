@@ -3,12 +3,18 @@ const axios = require('axios');
 const { API_KEY } = process.env;
 
 module.exports = {
-	async getAllByName(req, res, next) {
+	async getAll(req, res, next) {
 		try {
 			const { name } = req.query;
 			const recipesAPi = await this.getAllApi();
 			const recipesDb = await this.getAllDb();
 			const recipes = recipesAPi.concat(recipesDb);
+
+			if (!name) {
+				console.log('No name');
+				return res.status(200).json(recipes);
+			}
+
 			const recipesFiltered = recipes.filter((recipe) =>
 				recipe.title.toLowerCase().includes(name.toLowerCase())
 			);
@@ -106,10 +112,16 @@ module.exports = {
 	},
 
 	async getAllApi() {
+
+		//Se cambio por la API mocky por que la spoonacular no funciona.
+
+		const spoonacular = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
+		const mocky = 'https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5'
+
 		try {
 			const recipes = (
 				await axios.get(
-					`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+					mocky
 				)
 			).data.results.map((recipe) => {
 				return {
@@ -155,5 +167,4 @@ module.exports = {
 			return [];
 		}
 	},
-
 };

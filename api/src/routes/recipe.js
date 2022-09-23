@@ -4,7 +4,7 @@ const router = Router();
 
 //GET /recipes?name="..."
 router.get('/', async (req, res, next) => {
-	recipeController.getAllByName(req, res, next);
+	recipeController.getAll(req, res, next);
 });
 
 //GET /recipes/{idReceta}:
@@ -16,5 +16,7 @@ router.get('/:idRecipe', async (req, res, next) => {
 router.post('/', (req, res, next) => {
 	recipeController.create(req, res, next);
 });
+
+/*Extra*/
 
 module.exports = router;
