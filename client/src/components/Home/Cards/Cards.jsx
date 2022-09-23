@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from './Card/Card';
-import * as actions from '../../../actions/recipes.js';
+import * as actions from '../../../actions/recipe.js';
 
 const Cards = (props) => {
 	const dispatch = useDispatch();
-	const recipes = useSelector((state) => state.recipes);
+	const recipes = useSelector((state) => state.recipe.recipes);
+	const valueSearch = useSelector((state) => state.recipe.valueSearch);
+
 	useEffect(() => {
 		dispatch(actions.getAll());
 	}, [dispatch]);
@@ -30,10 +32,10 @@ const Cards = (props) => {
 			{Array.isArray(recipes)
 				? recipes
 						.filter((recipe) => {
-							if (props.search === '') {
+							if (valueSearch === '') {
 								return recipe;
 							} else if (
-								recipe.title.toLowerCase().includes(props.search.toLowerCase())
+								recipe.title.toLowerCase().includes(valueSearch.toLowerCase())
 							) {
 								return recipe;
 							}
@@ -49,6 +51,7 @@ const Cards = (props) => {
 								/>
 							);
 						})
+						.slice(props.indexOfFirstRecord, props.indexOfLastRecord)
 				: null}
 		</div>
 	);

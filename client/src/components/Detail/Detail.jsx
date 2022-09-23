@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as actions from '../../actions/recipes.js';
+import * as actions from '../../actions/recipe.js';
 
 const Detail = (props) => {
 	const dispatch = useDispatch();
-	const recipe = useSelector((state) => state.recipes);
+	const recipe = useSelector((state) => state.recipe.recipes);
 
 	useEffect(() => {
 		dispatch(actions.getById(props.match.params.id));

@@ -1,21 +1,22 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as actions from '../../../actions/recipes.js';
+import * as actions from '../../../actions/recipe.js';
 
 const Navbar = (props) => {
-	// const dispatch = useDispatch();
-	const [search, setSearch] = React.useState('');
+	const dispatch = useDispatch();
+	const valueSearch = useSelector((state) => state.recipe.valueSearch);
+	// const [search, setSearch] = React.useState('');
 
 	const handleChange = (e) => {
 		e.preventDefault();
-		setSearch(e.target.value);
-		// dispatch(actions.getAll(search));
+		dispatch(actions.setValueSearch(e.target.value));
+		console.log(valueSearch);
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setSearch('');
-	};
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// };
 
 	return (
 		<div>

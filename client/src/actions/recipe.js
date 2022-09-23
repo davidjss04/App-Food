@@ -1,4 +1,9 @@
-import { GET_ALL, GET_BY_ID, CREATE } from '../constants/actionTypes';
+import {
+	GET_ALL,
+	GET_BY_ID,
+	CREATE,
+	SET_VALUE_SEARCH,
+} from '../constants/actionTypes';
 
 import * as api from '../api/recipes';
 
@@ -27,4 +32,8 @@ export const create = (newRecipe) => async (dispatch) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const setValueSearch = (value) => (dispatch) => {
+	dispatch({ type: SET_VALUE_SEARCH, payload: value });
 };
