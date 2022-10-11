@@ -53,13 +53,14 @@ module.exports = {
 	//Se puede mejorar usando el findOrCreate de sequelize para evitar el anviguedad y la duplicacion de datos
 	async create(req, res, next) {
 		try {
-			const { title, summary, healthScore, image, diets } = req.body;
+			const { title, summary, healthScore, image, diets, steps } = req.body;
 
 			const recipeCreated = await Recipe.create({
 				title,
 				summary,
 				healthScore,
 				image,
+				steps,
 			});
 
 			diets.forEach(async (diet) => {
@@ -80,7 +81,7 @@ module.exports = {
 
 			return res
 				.status(200)
-				.send({ title, summary, healthScore, image, diets });
+				.send({ title, summary, healthScore, image, diets, steps });
 		} catch (error) {
 			next(error);
 		}
@@ -99,6 +100,12 @@ module.exports = {
 				healthScore: data.healthScore,
 				image: data.image,
 				diets: data.diets,
+				steps:
+					data.analyzedInstructions[0] && data.analyzedInstructions[0].steps
+						? data.analyzedInstructions[0].steps
+								.map((item) => item.step)
+								.join(' \n')
+						: '',
 			};
 
 			if (recipe) {
@@ -112,18 +119,14 @@ module.exports = {
 	},
 
 	async getAllApi() {
-
 		//Se cambio por la API mocky por que la spoonacular no funciona.
 
 		const spoonacular = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
-		const mocky = 'https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5'
+		const mocky =
+			'https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5';
 
 		try {
-			const recipes = (
-				await axios.get(
-					mocky
-				)
-			).data.results.map((recipe) => {
+			const recipes = (await axios.get(mocky)).data.results.map((recipe) => {
 				return {
 					id: recipe.id,
 					title: recipe.title,
@@ -131,6 +134,13 @@ module.exports = {
 					healthScore: recipe.healthScore,
 					image: recipe.image,
 					diets: recipe.diets,
+					steps:
+						recipe.analyzedInstructions[0] &&
+						recipe.analyzedInstructions[0].steps
+							? recipe.analyzedInstructions[0].steps
+									.map((item) => item.step)
+									.join(' \n')
+							: '',
 				};
 			});
 
@@ -155,6 +165,7 @@ module.exports = {
 					healthScore: recipe.healthScore,
 					image: recipe.image,
 					diets: recipe.diets.map((diet) => diet.name),
+					steps: recipe.steps,
 				};
 			});
 

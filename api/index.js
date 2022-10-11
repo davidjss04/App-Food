@@ -18,12 +18,13 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-// const controllerDB = require('./src/controllers/controllerDB.js');
 const { conn } = require('./src/db.js');
 
+//solo para traer los diets de la API
+// const controllerDB = require('./src/controllers/controllerDB.js');
 // Syncing all the models at once.
 
-//colocar force: true para que se borre la base de datos y se cree de nuevo
+// colocar force: true para que se borre la base de datos y se cree de nuevo
 // conn.sync({ force: true }).then(() => {
 // 	server.listen(3001, async () => {
 // 		console.log('%s listening at 3001');

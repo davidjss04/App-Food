@@ -28,6 +28,12 @@ module.exports = (sequelize) => {
 					max: 100,
 				},
 			},
+
+			steps: {
+				type: DataTypes.STRING(1000),
+				allowNull: false,
+			},
+
 			image: {
 				type: DataTypes.STRING,
 			},

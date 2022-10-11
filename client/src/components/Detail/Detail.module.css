@@ -1,0 +1,109 @@
+.container {
+	position: absolute;
+	background-color: transparent;
+	align-content: center;
+	width: 70%;
+	height: 800px;
+	top: 10px;
+	right: 0;
+	left: 10%;
+	bottom: 0;
+	margin-left: 2em;
+	border-radius: 20px;
+}
+
+.container h3 {
+	color: rgb(0, 0, 0);
+	font-size: 2em;
+	font-weight: 600;
+	margin-bottom: 1em;
+	font-family: 'Pacifico', cursive;
+	font-family: 'Shalimar', cursive;
+}
+
+.title {
+	position: relative;
+	justify-content: center;
+	text-align: center;
+	align-content: center;
+	top: 0;
+	padding: 0;
+	font-family: 'Pacifico', cursive;
+	font-family: 'Shalimar', cursive;
+	font-size: 80px;
+	color: rgb(0, 0, 0);
+	top: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.card_container {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.card_container img {
+	width: 350px;
+	border-radius: 20px;
+}
+
+.diets {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	text-align: center;
+
+	width: 25%;
+	height: 200px;
+	margin-left: 1em;
+	background-color: rgb(222, 238, 238);
+	box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
+	border-radius: 20px;
+}
+
+.score_container {
+	display: flex;
+	width: 50%;
+	margin-left: 100px;
+    margin-right: 100px;
+	margin-top: 10px;
+	justify-content: space-around;
+}
+
+.score_container div {
+	width: 200px;
+	background-color: rgb(222, 238, 238);
+	align-content: center;
+	text-align: center;
+	color: rgb(12, 11, 11);
+	border-radius: 20px;
+	margin-bottom: 20px;
+    font-size: 100%;
+}
+
+.score_container h3 {
+    font-size: 100%;
+    font-weight: 600;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Shalimar', cursive;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+	display: inline-flex;
+	align-content: center;
+	flex-wrap: nowrap;
+	justify-content: center;
+	background-color: rgb(222, 238, 238);
+}
+
+.info div {
+	width: 100%;
+	margin-right: 1em;
+	border-radius: 20px;
+	margin-bottom: 1em;
+	border: 10%;
+}
