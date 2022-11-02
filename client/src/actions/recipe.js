@@ -14,7 +14,7 @@ import * as api from '../api/recipes';
 export const getAll = (name) => async (dispatch) => {
 	try {
 		const { data } = await api.getAll(name);
-		dispatch({ type: GET_ALL, payload: data });
+		{}({ type: GET_ALL, payload: data });
 	} catch (error) {
 		console.log(error);
 	}
