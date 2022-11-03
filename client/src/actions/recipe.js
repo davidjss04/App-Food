@@ -61,7 +61,6 @@ export const filterBySearch = (recipes, valueSearch) => (dispatch) => {
 };
 
 export const filterByOrder = (recipes, order) => (dispatch) => {
-
 	const temporalRecipes = [...recipes];
 
 	dispatch({
