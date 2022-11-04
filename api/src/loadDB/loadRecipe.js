@@ -25,8 +25,18 @@ const getRecipe = async () => {
 						: '',
 				image: e.image,
 			});
+
+			e.diets.forEach(async (diet) => {
+				const dietCreate = await Diet.findOrCreate({
+					where: { name: diet },
+				});
+
+				await recipe.addDiet(dietCreate[0]);
+			});
 		}
 	});
+
+	return console.log('Recipes add to DB');
 };
 
 module.exports = {
