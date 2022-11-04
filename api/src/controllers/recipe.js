@@ -4,7 +4,6 @@ const { API_KEY } = process.env;
 
 module.exports = {
 	async getAll(req, res, next) {
-		
 		try {
 			const { name } = req.query;
 			const recipesAPi = await this.getAllApi();

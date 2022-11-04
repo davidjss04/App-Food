@@ -19,21 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { getRecipe } = require('./src/loadDB/loadRecipe.js');
 
-//solo para traer los diets de la API
-// const controllerDB = require('./src/controllers/controllerDB.js');
-// Syncing all the models at once.
-
-// colocar force: true para que se borre la base de datos y se cree de nuevo
-// conn.sync({ force: true }).then(() => {
-// 	server.listen(3001, async () => {
-// 		console.log('%s listening at 3001');
-// 		await controllerDB.getAll(); // eslint-disable-line no-console
-// 	});
-// });
-
-conn.sync().then(() => {
-	server.listen(3001, () => {
-		console.log('%s listening at 3001'); // eslint-disable-line no-console
+//added by hard code data for testing
+conn.sync({ force: true }).then(() => {
+	getRecipe().then(() => {
+		server.listen(3001, () => {
+			console.log('%s listening at 3001');
+		});
 	});
 });
