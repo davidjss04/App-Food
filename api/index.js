@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const { getRecipe } = require('./src/loadDB/loadRecipe.js');
 
 //added by hard code data for testing
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
 	getRecipe().then(() => {
 		server.listen(3001, () => {
 			console.log('%s listening at 3001');

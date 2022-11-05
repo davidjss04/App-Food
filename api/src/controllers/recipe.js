@@ -1,6 +1,7 @@
 const { Recipe, Diet } = require('../db');
 const axios = require('axios');
 const { API_KEY } = process.env;
+const { Op, Sequelize, DataTypes } = require('sequelize');
 
 module.exports = {
 	async getById(req, res, next) {
@@ -60,24 +61,65 @@ module.exports = {
 	},
 
 	async getAll(req, res, next) {
+		const { filter = '' } = req.query;
+		const { title, healthScore, diet } = filter;
+		const { options = '' } = req.query;
+		let { page } = options;
+		const order = options?.sort && [['title', options.sort.toUpperCase()]];
+
+		let limit = 9;
+		let offset = (page - 1) * 9;
+
+		if (!page) {
+			page = 1;
+			limit = 100;
+			offset = 0;
+		}
+
+		const where = {};
+		const dietFilter = {};
+
+		if (title) where.title = { [Op.iLike]: `%${title}%` };
+
+		if (healthScore)
+			where.healthScore = Sequelize.where(
+				Sequelize.col('healthScore'),
+				'>=',
+				healthScore
+			);
+
+		if (diet) dietFilter.name = { [Op.iLike]: diet };
+
+		if (order) where.order = { [Op.iLike]: `%${order}%` };
+
+		let config = {
+			include: {
+				model: Diet,
+				where: dietFilter,
+				through: {
+					attributes: [],
+				},
+				attributes: ['name', 'id'],
+			},
+			where,
+			order,
+			offset: offset,
+			limit: limit,
+		};
+
 		try {
-			const recipes = await Recipe.findAll({
-				include: [
-					{
-						model: Diet,
-						attributes: ['name', 'id'],
-						through: {
-							attributes: [],
-						},
-					},
-				],
-			});
+			let { count, rows } = await Recipe.findAndCountAll(config);
 
-			if (recipes.length > 0) {
-				return res.status(200).send(recipes);
+			if (rows.length > 0) {
+				return res.status(200).send({
+					page: page,
+					offSet: (page - 1) * 10,
+					total: rows.length,
+					recipes: rows,
+				});
+			} else {
+				return res.status(200).send('No recipes found');
 			}
-
-			return res.status(200).send('Empty recipe database');
 		} catch (error) {
 			next(error);
 		}
