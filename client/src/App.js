@@ -1,20 +1,13 @@
 import './App.css';
-import { Detail, Form, Home, LandingPage } from './components/index.js';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Router';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="App">
-				<Switch>
-					<Route exact path="/" component={LandingPage} />
-					<Route exact path="/home">
-						<Home />
-					</Route>
-					<Route exact path="/detail/:id" component={Detail} />
-					<Route exact path="/form" component={Form} />
-				</Switch>
-			</div>
+			<BrowserRouter>
+				<Routes />
+			</BrowserRouter>
 		</BrowserRouter>
 	);
 }
