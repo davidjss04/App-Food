@@ -12,6 +12,7 @@ const Home = () => {
 
 	const indexOfLastRecipe = currentPage * recipesPerPage;
 	const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+	
 	const nPages = Math.ceil(recipes.length / recipesPerPage);
 
 	return (
