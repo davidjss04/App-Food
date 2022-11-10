@@ -10,6 +10,7 @@ import styles from './Navbar.module.css';
 const Navbar = (props) => {
 	const dispatch = useDispatch();
 	const recipes = useSelector((state) => state.recipe.recipes);
+	
 	const diets = useSelector((state) => state.diet.diets);
 
 	const [search, setSearch] = useState('');
@@ -19,6 +20,7 @@ const Navbar = (props) => {
 
 	useEffect(() => {
 		dispatch(actionsDiet.getDiet());
+
 		console.log('useEffect para diets');
 	}, [dispatch]);
 
