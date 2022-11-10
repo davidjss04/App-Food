@@ -11,6 +11,7 @@ const Navbar = (props) => {
 	const dispatch = useDispatch();
 	const recipes = useSelector((state) => state.recipe.recipes);
 	const diets = useSelector((state) => state.diet.diets);
+	
 	const [search, setSearch] = useState('');
 
 	useEffect(() => {
