@@ -17,7 +17,7 @@ const Home = () => {
 	return (
 		<div>
 			<Navbar setCurrentPage={setCurrentPage}/>
-			<Cards
+			{/* <Cards
 				indexOfFirstRecipe={indexOfFirstRecipe}
 				indexOfLastRecipe={indexOfLastRecipe}
 				nPages={nPages}
@@ -26,7 +26,7 @@ const Home = () => {
 				nPages={nPages}
 				currentPage={currentPage}
 				setCurrentPage={setCurrentPage}
-			/>
+			/> */}
 		</div>
 	);
 };
