@@ -5,6 +5,7 @@ export const SET_VALUE_SEARCH = 'SET_VALUE_SEARCH';
 
 export const FILTER_BY_SEARCH = 'FILTER_BY_SEARCH';
 export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
+
 export const FILTER_BY_DIET = 'FILTER_BY_DIET';
 
 
