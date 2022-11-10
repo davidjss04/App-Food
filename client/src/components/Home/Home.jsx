@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar/Navbar';
 import Cards from './Cards/Cards';
 import Pagination from './Pagination/Pagination';
+
 import { useSelector } from 'react-redux';
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
 	const [recipesPerPage] = useState(9);
 
 	const indexOfLastRecipe = currentPage * recipesPerPage;
+
 	const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
 	
 
