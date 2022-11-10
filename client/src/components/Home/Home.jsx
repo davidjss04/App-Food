@@ -8,11 +8,12 @@ const Home = () => {
 	const recipes = useSelector((state) => state.recipe.recipesFiltered);
 
 	const [currentPage, setCurrentPage] = useState(1);
-	
+
 	const [recipesPerPage] = useState(9);
 
 	const indexOfLastRecipe = currentPage * recipesPerPage;
 	const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+	
 
 	const nPages = Math.ceil(recipes.length / recipesPerPage);
 
