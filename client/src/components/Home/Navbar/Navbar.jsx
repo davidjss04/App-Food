@@ -18,7 +18,7 @@ const Navbar = (props) => {
 	const [search, setSearch] = useState('');
 
 
-	
+	//prueba
 
 	useEffect(() => {
 		dispatch(actionsDiet.getDiet());
