@@ -1,9 +1,27 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
+import {
+  selectAllRecipes,
+  getRecipesLoading,
+  getRecipesError,
+} from "../features/recipes/recipesSlice";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  const recipes = useSelector(selectAllRecipes);
+  const loading = useSelector(getRecipesLoading);
+  const error = useSelector(getRecipesError);
 
-export default Home
+  let content;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!loading) {
+    return <div>{console.log(recipes)}</div>;
+  }
+
+  return <div>{content}</div>;
+};
+
+export default Home;
