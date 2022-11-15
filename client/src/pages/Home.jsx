@@ -1,27 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  selectAllRecipes,
-  getRecipesLoading,
-  getRecipesError,
-} from "../features/recipes/recipesSlice";
+import { Cards } from "../sections";
 
 const Home = () => {
-  const recipes = useSelector(selectAllRecipes);
-  const loading = useSelector(getRecipesLoading);
-  const error = useSelector(getRecipesError);
-
-  let content;
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!loading) {
-    return <div>{console.log(recipes)}</div>;
-  }
-
-  return <div>{content}</div>;
+  return (
+    <div>
+      <Cards />
+    </div>
+  );
 };
 
 export default Home;
