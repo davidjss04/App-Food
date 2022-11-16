@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { Card } from "../components";
+import { Card, Filter, Pagination } from "../components";
 import {
   selectAllRecipes,
   getRecipesLoading,
@@ -13,22 +13,24 @@ const Cards = () => {
   const loading = useSelector(getRecipesLoading);
   const error = useSelector(getRecipesError);
 
-  if (loading || error.lenght > 0) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
-      {recipes.map((recipe) => (
-        <Card
-          key={recipe.id}
-          title={recipe.title}
-          summary={recipe.summary}
-          healthScore={recipe.healthScore}
-          steps={recipe.steps}
-          image={recipe.image}
-        />
-      ))}
+      <Filter />
+      <Pagination />
+      {!loading || error.lenght > 0 ? (
+        recipes.map((recipe) => (
+          <Card
+            key={recipe.id}
+            title={recipe.title}
+            summary={recipe.summary}
+            healthScore={recipe.healthScore}
+            steps={recipe.steps}
+            image={recipe.image}
+          />
+        ))
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 };
