@@ -37,4 +37,9 @@ const dietsSlice = createSlice({
   },
 });
 
+export const selectAllDiets = (state) => state.diets.diets;
+export const getDietsLoading = (state) => state.diets.loading;
+export const getDietsError = (state) => state.diets.error;
+export const getDietsTotal = (state) => state.diets.total;
+
 export default dietsSlice.reducer;

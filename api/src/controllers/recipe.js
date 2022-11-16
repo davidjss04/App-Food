@@ -79,7 +79,7 @@ module.exports = {
     const where = {};
     const dietFilter = {};
 
-    if (title) where.title = { [Op.iLike]: `%${title}%` };
+    if (title) where.title = { [Op.like]: `%${title}%` };
 
     if (healthScore)
       where.healthScore = Sequelize.where(
@@ -88,11 +88,12 @@ module.exports = {
         healthScore
       );
 
-    if (diet) dietFilter.name = { [Op.iLike]: diet };
+    if (diet) dietFilter.name = { [Op.like]: diet };
 
-    if (order) where.order = { [Op.iLike]: `%${order}%` };
+    // if (order) where.order = { [Op.iLike]: `%${order}%` };
 
     let config = {
+      distinct: true,
       include: {
         model: Diet,
         where: dietFilter,
@@ -102,21 +103,23 @@ module.exports = {
         attributes: ["name", "id"],
       },
       where,
-      order,
+      order: order,
       offset: offset,
       limit: limit,
     };
 
     try {
-      let count = await Recipe.count();
-      let { rows } = await Recipe.findAndCountAll(config);
+      // let count = await Recipe.count();
+      let { count, rows } = await Recipe.findAndCountAll(config);
 
       if (rows.length > 0) {
+        console.log(order);
         return res.status(200).send({
           page: Number(page),
           offSet: (page - 1) * 10,
           total: rows.length,
           count: count,
+          options: options,
           recipes: rows,
         });
       } else {
