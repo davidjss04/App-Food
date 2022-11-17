@@ -21,6 +21,7 @@ const Cards = () => {
         recipes.map((recipe) => (
           <Card
             key={recipe.id}
+            id={recipe.id}
             title={recipe.title}
             summary={recipe.summary}
             healthScore={recipe.healthScore}

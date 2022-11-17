@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { FormMik } from "../components";
 
 const Form = () => {
   return (
-    <div>Form</div>
-  )
-}
+    <div>
+      <FormMik />
+    </div>
+  );
+};
 
-export default Form
+export default Form;
