@@ -6,6 +6,7 @@ import {
   sortRecipe,
   getRecipesFilter,
   fetchRecipes,
+  changePage,
 } from "../../features/recipes/recipesSlice.js";
 
 import Select from "react-select";
@@ -41,6 +42,7 @@ const Filter = () => {
     if (selectAllDiets !== null) {
       if (event.name === "diets") {
         dispatch(filterRecipeByDiets(selectedOption.value));
+        dispatch(changePage(1));
       }
 
       if (event.name === "order") {

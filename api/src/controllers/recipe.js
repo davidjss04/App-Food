@@ -23,7 +23,7 @@ module.exports = {
       });
 
       if (recipe.length > 0) {
-        return res.status(200).send(recipe);
+        return res.status(200).send(...recipe);
       }
 
       return res.status(200).send("No recipe found");

@@ -9,6 +9,7 @@ const initialState = {
   total: 0,
   error: "",
   count: 0,
+  recipeDetail: {},
   filter: {
     filters: {
       title: "",
@@ -20,6 +21,7 @@ const initialState = {
       page: 1,
     },
   },
+
 };
 
 export const fetchRecipes = createAsyncThunk(
@@ -33,10 +35,19 @@ export const fetchRecipes = createAsyncThunk(
   }
 );
 
+export const fetchRecipeById = createAsyncThunk(
+  "recipes/fetchRecipeById",
+  async (id) => {
+    const response = await axios.get(`${API_URL}/recipe/${id}`);
+    return response.data;
+  }
+);
+
 export const addNewRecipe = createAsyncThunk(
   "recipes/addNewRecipe",
   async (initialRecipe) => {
-    const response = await axios.post(`${API_URL}/recipes`, initialRecipe);
+    const response = await axios.post(`${API_URL}/recipe`, initialRecipe);
+    console.log("llego al recipeSlice");
     return response.data;
   }
 );
@@ -91,6 +102,19 @@ const recipesSlice = createSlice({
       })
       .addCase(addNewRecipe.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(fetchRecipeById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.recipeDetail = action.payload;
+        state.error = "";
+      })
+      .addCase(fetchRecipeById.rejected, (state, action) => {
+        state.loading = false;
+        state.recipeDetail = {};
+        state.error = action.error.message;
+      })
+      .addCase(fetchRecipeById.pending, (state) => {
+        state.loading = true;
       });
   },
 });
@@ -102,6 +126,7 @@ export const getRecipesPage = (state) => state.recipes.page;
 export const getRecipesTotal = (state) => state.recipes.total;
 export const getRecipesFilter = (state) => state.recipes.filter;
 export const getRecipesCount = (state) => state.recipes.count;
+export const getRecipeDetail = (state) => state.recipes.recipeDetail;
 
 export const {
   createRecipe,

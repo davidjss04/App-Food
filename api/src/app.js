@@ -3,12 +3,19 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const cors = require('cors');
 
 require('./db.js');
 
 const server = express();
 
 server.name = 'API';
+
+const corsOptions = {
+	  origin: 'http://localhost:3000',
+	  credentials: true,
+	  optionSuccessStatus: 200
+};
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
@@ -24,6 +31,9 @@ server.use((req, res, next) => {
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
 	next();
 });
+
+
+server.use(cors(corsOptions));
 
 server.use('/', routes); //Apenas entre a barra algo entre a Routers
 
