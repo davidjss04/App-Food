@@ -7,11 +7,13 @@ module.exports = {
   async getById(req, res, next) {
     try {
       const { idRecipe } = req.params;
+
       const recipe = await Recipe.findAll({
         include: [
           {
             model: Diet,
             attributes: ["name", "id"],
+            
             through: {
               attributes: [],
             },
