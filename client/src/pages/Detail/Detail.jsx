@@ -4,7 +4,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import {
   fetchRecipeById,
   getRecipeDetail,
-} from "../features/recipes/recipesSlice.js";
+} from "../../features/recipes/recipesSlice.js";
 
 const Detail = () => {
   const dispatch = useDispatch();

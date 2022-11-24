@@ -1,5 +1,35 @@
 .app {
   background-color: var(--primary-color);
   font-family: var(--font-base);
+
+  display: grid;
+  gap: 0px;
+  grid-template:
+    "navbar" 100px
+    "sidebar" 100px
+    "main" 1fr
+    "footer" 150px;
+
+  height: 100vh;
+  text-align: center;
 }
 
+@media (min-width: 768px) {
+  .app {
+    grid-template:
+      "navbar navbar" 100px
+      "sidebar main" 1fr
+      "footer footer" 150px/
+      1fr 3fr;
+  }
+}
+
+/* @media (min-width: 1024px) {
+  .app {
+    grid-template:
+      "navbar navbar" 100px
+      "sidebar main" 1fr
+      "footer footer" 150px/
+      1fr 3fr;
+  }
+} */

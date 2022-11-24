@@ -1,0 +1,4 @@
+.mainContainer{
+    grid-area: main;
+    background-color: #fdcfcf;
+}

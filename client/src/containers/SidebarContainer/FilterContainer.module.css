@@ -1,0 +1,4 @@
+.sideContainer{
+    grid-area: sidebar;
+    background-color: #afd6af;
+}

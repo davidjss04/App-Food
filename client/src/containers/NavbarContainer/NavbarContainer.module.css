@@ -1,0 +1,4 @@
+.navbarContainer{
+    grid-area: navbar;
+    background-color: #b5c8eb;
+}

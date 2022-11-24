@@ -1,5 +1,5 @@
 import React from "react";
-import { FormMik } from "../components";
+import { FormMik } from "../../components";
 
 const Form = () => {
   return (
